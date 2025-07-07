@@ -1,3 +1,4 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -8,10 +9,11 @@ class Settings(BaseSettings):
         "cli_ignore_unknown_args": True,
         "env_prefix": "OPENAI_",
         "env_file": ".env",
+        "extra": "allow",
     }
 
-    api_key: str
-    base_url: str
+    api_key: str = Field(description="API key for authentication")
+    base_url: str = Field(description="Base URL for the OpenAI-compatible API")
 
 
 env = Settings()  # type: ignore
