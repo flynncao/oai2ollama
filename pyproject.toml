@@ -1,6 +1,7 @@
 [project]
 name = "oai2ollama"
-version = "1.0.1"
+version = "1.0.2"
+authors = [{ name = "Muspi Merol", email = "me@promplate.dev" }]
 requires-python = ">=3.12"
 readme = "README.md"
 dependencies = [
@@ -9,6 +10,9 @@ dependencies = [
     "pydantic-settings~=2.10.1",
     "uvicorn-hmr~=0.0.8.0",
 ]
+
+[project.urls]
+repository = "https://github.com/CNSeniorious000/oai2ollama"
 
 [project.scripts]
 oai2ollama = "oai2ollama:start"

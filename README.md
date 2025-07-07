@@ -13,7 +13,7 @@ uvx oai2ollama --help
 ```
 
 ```text
-usage: oai2ollama.exe [-h] [--api-key str] [--base-url str]
+usage: oai2ollama [-h] [--api-key str] [--base-url str]
 options:
   -h, --help      show this help message and exit
   --api-key str   (required)
