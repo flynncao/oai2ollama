@@ -9,7 +9,7 @@ app = FastAPI()
 def _new_client():
     from httpx import AsyncClient
 
-    return AsyncClient(base_url=env.base_url, headers={"Authorization": f"Bearer {env.api_key}"}, timeout=60, http2=True)
+    return AsyncClient(base_url=str(env.base_url), headers={"Authorization": f"Bearer {env.api_key}"}, timeout=60, http2=True)
 
 
 @app.get("/api/tags")
@@ -22,11 +22,10 @@ async def models():
 
 @app.post("/api/show")
 async def show_model():
-    response = {
+    return {
         "model_info": {"general.architecture": "CausalLM"},
         "capabilities": ["chat"],
     }
-    return response
 
 
 @app.post("/v1/chat/completions")

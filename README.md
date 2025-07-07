@@ -13,11 +13,11 @@ uvx oai2ollama --help
 ```
 
 ```text
-usage: oai2ollama [-h] [--api-key str] [--base-url str]
+usage: oai2ollama [--api-key str] [--base-url HttpUrl]
 options:
-  -h, --help      show this help message and exit
-  --api-key str   (required)
-  --base-url str  (required)
+  --help              Show this help message and exit
+  --api-key str       API key for authentication (required)
+  --base-url HttpUrl  Base URL for the OpenAI-compatible API (required)
 ```
 
 Or you can use a `.env` file to set the environment variables:
