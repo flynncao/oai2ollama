@@ -7,4 +7,4 @@ def start():
     uvicorn.run(app, host="localhost", port=11434)
 
 
-__all__ = ["_app", "start"]
+__all__ = ["app", "start"]
