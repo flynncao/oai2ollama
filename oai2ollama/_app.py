@@ -24,7 +24,7 @@ async def models():
 async def show_model():
     return {
         "model_info": {"general.architecture": "CausalLM"},
-        "capabilities": ["chat", "tools", "stop", "reasoning"],
+        "capabilities": ["completion", *env.capacities],
     }
 
 

@@ -14,6 +14,7 @@ class Settings(BaseSettings):
 
     api_key: str = Field(description="API key for authentication")
     base_url: HttpUrl = Field(description="Base URL for the OpenAI-compatible API")
+    capacities: list[Literal["tools", "insert", "vision", "embedding", "thinking"]] = []
 
 
 env = Settings()  # type: ignore
