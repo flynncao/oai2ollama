@@ -15,12 +15,23 @@ uvx oai2ollama --help
 ```
 
 ```text
-usage: oai2ollama [--api-key str] [--base-url HttpUrl]
+usage: oai2ollama [--api-key str] [--base-url HttpUrl] [--capacities list[str]]
 options:
-  --help              Show this help message and exit
-  --api-key str       API key for authentication (required)
-  --base-url HttpUrl  Base URL for the OpenAI-compatible API (required)
+  --help, -h                  Show this help message and exit
+  --api-key str               API key for authentication (required)
+  --base-url HttpUrl          Base URL for the OpenAI-compatible API (required)
+  --capacities, -c list[str]  Extra capacities to mark the model as supporting
 ```
+
+> [!TIP]
+> To mark the model as supporting certain capacities, you can use the `--capacities` (or `-c`) option with a list of strings. For example, the following two syntaxes are supported:
+>
+> `oai2ollama -c tools` or `oai2ollama --capacities tools`
+>
+> `oai2ollama -c tools -c vision` or `oai2ollama --capacities -c tools,vision`
+>
+> Capabilities currently [used by Ollama](https://github.com/ollama/ollama/blob/main/types/model/capability.go#L6-L11) are:
+> `tools`, `insert`, `vision`, `embedding`, `thinking` and `completion`. We always include `completion`.
 
 Or you can use a `.env` file to set the environment variables:
 
