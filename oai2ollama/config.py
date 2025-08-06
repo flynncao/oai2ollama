@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field, HttpUrl
 from pydantic_settings import BaseSettings
 
@@ -10,6 +12,9 @@ class Settings(BaseSettings):
         "env_prefix": "OPENAI_",
         "env_file": ".env",
         "extra": "ignore",
+        "cli_shortcuts": {
+            "capacities": "c",
+        },
     }
 
     api_key: str = Field(description="API key for authentication")
