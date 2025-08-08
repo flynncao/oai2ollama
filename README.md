@@ -62,3 +62,9 @@ Or you can pass these as command line arguments:
 ```sh
 docker run -p 11434:11434 oai2ollama --api-key your_api_key --base-url your_base_url
 ```
+
+To have the server listen on a different host, like all IPv6 interfaces, use the `--host` argument:
+
+```sh
+docker run -p 11434:11434 oai2ollama --host "::"
+```
