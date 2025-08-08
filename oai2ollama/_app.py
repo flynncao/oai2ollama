@@ -47,6 +47,7 @@ async def chat_completions(request: Request):
             res.raise_for_status()
             return res.json()
 
+
 @app.get("/api/version")
 async def version():
     return {"version": "0.11.0"}
