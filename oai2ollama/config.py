@@ -1,7 +1,8 @@
 from os import getenv
+from sys import stderr
 from typing import Literal
 
-from pydantic import Field, HttpUrl
+from pydantic import Field, HttpUrl, ValidationError
 from pydantic_settings import BaseSettings
 
 
@@ -22,6 +23,12 @@ class Settings(BaseSettings):
     host: str = Field("localhost", description="IP / hostname for the API server")
 
 
-env = Settings()  # type: ignore
-
-print(env)
+try:
+    env = Settings()  # type: ignore
+    print(env, file=stderr)
+except ValidationError as err:
+    print("\n  Error: invalid config:\n", file=stderr)
+    for error in err.errors():
+        print(" ", "".join(f".{x}" if isinstance(x, str) else f"[{x}]" for x in error["loc"]).lstrip(".") + ":", error["msg"], file=stderr)
+    print(file=stderr)
+    exit(1)
