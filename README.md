@@ -15,12 +15,13 @@ uvx oai2ollama --help
 ```
 
 ```text
-usage: oai2ollama [--api-key str] [--base-url HttpUrl] [--capacities list[str]]
+usage: oai2ollama [--api-key str] [--base-url HttpUrl] [--capacities list[str]] [--host str]
 options:
   --help, -h                  Show this help message and exit
   --api-key str               API key for authentication (required)
   --base-url HttpUrl          Base URL for the OpenAI-compatible API (required)
   --capacities, -c list[str]  Extra capacities to mark the model as supporting
+  --host str                  IP / hostname for the API server (default: localhost)
 ```
 
 > [!TIP]
@@ -33,11 +34,13 @@ options:
 > Capabilities currently [used by Ollama](https://github.com/ollama/ollama/blob/main/types/model/capability.go#L6-L11) are:
 > `tools`, `insert`, `vision`, `embedding`, `thinking` and `completion`. We always include `completion`.
 
-Or you can use a `.env` file to set the environment variables:
+Or you can use a `.env` file to set these options:
 
 ```properties
 OPENAI_API_KEY=your_api_key
 OPENAI_BASE_URL=your_base_url
+HOST=0.0.0.0
+CAPACITIES=["vision","thinking"]
 ```
 
 ### with Docker
