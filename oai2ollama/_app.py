@@ -24,7 +24,7 @@ async def models():
 async def show_model():
     return {
         "model_info": {"general.architecture": "CausalLM"},
-        "capabilities": ["completion", *env.capacities],
+        "capabilities": ["completion", *env.capabilities],
     }
 
 
@@ -50,4 +50,4 @@ async def chat_completions(request: Request):
 
 @app.get("/api/version")
 async def version():
-    return {"version": "0.11.0"}
+    return {"version": "1.3.0"}

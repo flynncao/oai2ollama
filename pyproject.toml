@@ -1,6 +1,6 @@
 [project]
 name = "oai2ollama"
-version = "1.2.3"
+version = "1.2.4"
 authors = [{ name = "Muspi Merol", email = "me@promplate.dev" }]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -52,3 +52,6 @@ extend-select = [
 
 [dependency-groups]
 dev = ["ruff~=0.12.2"]
+
+[tool.pyright]
+typeCheckingMode = "standard"

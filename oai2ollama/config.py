@@ -1,9 +1,9 @@
 from os import getenv
 from sys import stderr
-from typing import Literal
+from typing import Literal, Self
 
-from pydantic import Field, HttpUrl, ValidationError
-from pydantic_settings import BaseSettings
+from pydantic import Field, HttpUrl, ValidationError, model_validator
+from pydantic_settings import BaseSettings, CliSuppress
 
 
 class Settings(BaseSettings):
@@ -13,14 +13,22 @@ class Settings(BaseSettings):
         "cli_ignore_unknown_args": True,
         "extra": "ignore",
         "cli_shortcuts": {
-            "capacities": "c",
+            "capabilities": "c",
         },
     }
 
     api_key: str = Field(getenv("OPENAI_API_KEY", ...), description="API key for authentication")  # type: ignore
     base_url: HttpUrl = Field(getenv("OPENAI_BASE_URL", ...), description="Base URL for the OpenAI-compatible API")  # type: ignore
-    capacities: list[Literal["tools", "insert", "vision", "embedding", "thinking"]] = []
+    capacities: CliSuppress[list[Literal["tools", "insert", "vision", "embedding", "thinking"]]] = Field([], repr=False)
+    capabilities: list[Literal["tools", "insert", "vision", "embedding", "thinking"]] = []
     host: str = Field("localhost", description="IP / hostname for the API server")
+
+    @model_validator(mode="after")
+    def _warn_legacy_capacities(self: Self):
+        if self.capacities:
+            print("\n  Warning: 'capacities' is a previous typo, please use 'capabilities' instead.\n", file=stderr)
+            self.capabilities.extend(self.capacities)
+        return self
 
 
 try:
