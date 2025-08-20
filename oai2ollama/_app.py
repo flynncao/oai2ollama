@@ -57,5 +57,5 @@ async def chat_completions(request: Request):
 
 
 @app.get("/api/version")
-async def version():
-    return {"version": "1.3.0"}
+async def ollama_version():
+    return {"version": "0.11.4"}
