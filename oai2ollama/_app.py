@@ -28,6 +28,14 @@ async def show_model():
     }
 
 
+@app.get("/v1/models")
+async def list_models():
+    async with _new_client() as client:
+        res = await client.get("/models")
+        res.raise_for_status()
+        return res.json()
+
+
 @app.post("/v1/chat/completions")
 async def chat_completions(request: Request):
     data = await request.json()
