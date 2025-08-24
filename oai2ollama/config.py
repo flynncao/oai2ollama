@@ -17,8 +17,10 @@ class Settings(BaseSettings):
         },
     }
 
+    print('init settings')
     api_key: str = Field(getenv("OPENAI_API_KEY", ...), description="API key for authentication")  # type: ignore
     base_url: HttpUrl = Field(getenv("OPENAI_BASE_URL", ...), description="Base URL for the OpenAI-compatible API")  # type: ignore
+    proxy_url: HttpUrl | None = Field(getenv("PROXY_URL", None), description="Proxy URL for the OpenAI-compatible API")
     capacities: CliSuppress[list[Literal["tools", "insert", "vision", "embedding", "thinking"]]] = Field([], repr=False)
     capabilities: list[Literal["tools", "insert", "vision", "embedding", "thinking"]] = []
     host: str = Field("localhost", description="IP / hostname for the API server")
